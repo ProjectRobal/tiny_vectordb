@@ -16,7 +16,7 @@ class SqliteIO:
     _lock = Lock()
 
     def __init__(self, fpath: str) -> None:
-        self.conn = sqlite3.connect(fpath)
+        self.conn = sqlite3.connect(fpath, check_same_thread=False)
         self.cur = self.conn.cursor()
     
     @lockRequire(_lock)
